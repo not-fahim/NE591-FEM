@@ -6,7 +6,7 @@ TEST_DIR = tests
 BIN_DIR = bin
 
 # Sources
-CORE_SRC = $(SRC_DIR)/mesh.cpp $(SRC_DIR)/input_parser.cpp
+CORE_SRC = $(SRC_DIR)/*.cpp 
 TEST_SRC = $(TEST_DIR)/test_runner.cpp
 
 # Executables
