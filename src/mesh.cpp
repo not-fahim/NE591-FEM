@@ -10,7 +10,7 @@ std::size_t Node::getDimension() const {
 }
 
 // --- Element Implementation ---
-Element::Element(std::size_t id, const std::vector<std::size_t>& connectivity) 
+Element::Element(std::size_t id, const std::vector<size_t>& connectivity) 
     : id(id), node_ids(connectivity) {}
 
 std::size_t Element::numNodes() const {
@@ -32,6 +32,15 @@ const std::vector<Node>& Mesh::getNodes() const {
 
 const std::vector<Element>& Mesh::getElements() const { 
     return elements; 
+}
+
+std::vector<double> Mesh::getElementNodeCoords1D(const Element& element) const {
+    std::vector<double> node_x;
+    node_x.reserve(element.numNodes());
+    for (std::size_t node_id : element.getNodeIds()) {
+        node_x.push_back(nodes[node_id].getCoords()[0]);
+    }
+    return node_x;
 }
 
 void Mesh::printSummary() const {

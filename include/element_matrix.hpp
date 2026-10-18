@@ -1,20 +1,27 @@
 #pragma once
+
 #include <vector>
-#include <cstddef>
 #include <functional>
+#include <cstddef>
+#include "mesh.hpp"
+#include "dof_manager.hpp"
 
 class ElementMatrix1D {
 public:
-    // Computes the local stiffness matrix K_e (2x2 for 1D linear element)
     static std::vector<std::vector<double>> computeStiffness(
-        const std::vector<double>& node_x,
+        const Element& element,
+        const Mesh& mesh,
         double k,
-        std::size_t num_gauss_points = 2
+        std::size_t num_gauss_points
     );
 
     static std::vector<double> computeForce(
-        const std::vector<double>& node_x,
+        const Element& element,
+        const Mesh& mesh,
         const std::function<double(double)>& f,
-        std::size_t num_gauss_points = 2
+        std::size_t num_gauss_points,
+        const DofManager& dof_manager,
+        double k
     );
 };
+
